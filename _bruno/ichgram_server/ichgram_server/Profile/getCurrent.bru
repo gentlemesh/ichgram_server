@@ -1,0 +1,15 @@
+meta {
+  name: getCurrent
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/profile/
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}

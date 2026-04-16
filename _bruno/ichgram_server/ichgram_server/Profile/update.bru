@@ -1,0 +1,22 @@
+meta {
+  name: update
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/profile
+  body: multipartForm
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:multipart-form {
+  full_name: Тест Тестович Тестов
+  about: Специальный пользователь для тестов
+  website: https://test.local.ui/
+  picture: @file(/home/progr/Pictures/fun/cow.jpg)
+}

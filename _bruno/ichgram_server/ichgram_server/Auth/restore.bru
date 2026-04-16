@@ -1,0 +1,21 @@
+meta {
+  name: restore
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/auth/restore
+  body: json
+  auth: none
+}
+
+headers {
+  Referer: http://localhost/
+}
+
+body:json {
+  {
+    "input": "test@test.local"
+  }
+}

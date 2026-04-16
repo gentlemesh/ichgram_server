@@ -1,0 +1,32 @@
+meta {
+  name: editComment
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{baseUrl}}/comment/{{firstCommentId}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "text": "Это отредактированный комментарий к первому посту."
+  }
+}
+
+script:post-response {
+  if (res.body?.data?.comments && res.body?.data?.comments?.length > 0) {
+    bru.setVar('firstCommentId', res.body.data.comments[0]._id);
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

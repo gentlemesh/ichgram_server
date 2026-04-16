@@ -1,0 +1,20 @@
+meta {
+  name: getOne
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/post/one/{{firstPostId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

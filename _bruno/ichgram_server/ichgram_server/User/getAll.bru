@@ -1,0 +1,29 @@
+meta {
+  name: getAll
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/user/all
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+script:post-response {
+  if (res.body?.data?.users && res.body?.data?.users?.length > 0) {
+    bru.setVar('firstUserId', res.body.data.users[0]._id);
+    if (res.body.data.users.length > 1) {
+      bru.setVar('secondUserId', res.body.data.users[1]._id);
+    }
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

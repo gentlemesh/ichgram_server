@@ -1,0 +1,25 @@
+meta {
+  name: update
+  type: http
+  seq: 7
+}
+
+patch {
+  url: {{baseUrl}}/post/{{firstPostId}}
+  body: multipartForm
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:multipart-form {
+  text: Это обновлённый пост
+  image: @file(/home/progr/Pictures/fun/first_day_at_job.jpg)
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

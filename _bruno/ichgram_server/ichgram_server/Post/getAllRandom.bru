@@ -1,0 +1,20 @@
+meta {
+  name: getAllRandom
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/post/random
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

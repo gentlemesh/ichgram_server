@@ -1,0 +1,26 @@
+meta {
+  name: getAllByCurrentUser
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/post/user
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+script:post-response {
+  if (res.body?.data?.posts && res.body?.data?.posts?.length > 0) {
+    bru.setVar('firstPostId', res.body.data.posts[0]._id);
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

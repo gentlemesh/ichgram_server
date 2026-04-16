@@ -1,0 +1,26 @@
+meta {
+  name: search
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/user/search?q=tes
+  body: none
+  auth: bearer
+}
+
+params:query {
+  q: tes
+  ~q: ste
+  ~q: ter
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

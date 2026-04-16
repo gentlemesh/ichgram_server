@@ -1,0 +1,20 @@
+meta {
+  name: Like
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/comment/{{firstCommentId}}/like
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
