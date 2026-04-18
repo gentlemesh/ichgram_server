@@ -38,6 +38,12 @@ const userSchema = new mongoose.Schema({
     toObject: { virtuals: true },
 });
 
+userSchema.virtual('postsCount', {
+    ref: 'Post',
+    localField: '_id',
+    foreignField: 'author',
+    count: true,
+});
 userSchema.virtual('followersCount', {
     ref: 'Follow',
     localField: '_id',

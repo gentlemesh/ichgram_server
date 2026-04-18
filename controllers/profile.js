@@ -17,7 +17,7 @@ export const getProfile = async (req, res) => {
 
         const user = await User
             .findById(userId)
-            .populate(['followersCount', 'followsCount'])
+            .populate(['postsCount', 'followersCount', 'followsCount'])
             .exec()
             ;
         user.isFollowed = !!(await Follow.exists({ followed: user._id, follower: req.user.id }));
