@@ -85,6 +85,7 @@ export const getPost = async (req, res) => {
             .exec()
             ;
         post.isLiked = !!(await LikePost.exists({ post: post._id, liker: req.user.id }));
+        post.author.isFollowed = !!(await Follow.exists({ followed: post.author._id, follower: req.user.id }));
 
         return res.json({ data: { post } });
     } catch (err) {
