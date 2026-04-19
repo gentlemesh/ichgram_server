@@ -112,15 +112,6 @@ export const validationRules = {
             ,
         ],
         update: [
-            body('username').optional().trim()
-                .isLength({ min: 2 }).withMessage('Minimum 2 symbols required')
-                .custom(async username => {
-                    const isExists = await User.exists({ username });
-                    if (isExists) {
-                        throw new Error('This username is already taken');
-                    }
-                })
-            ,
             body('full_name').optional().trim()
                 .isLength({ min: 2 }).withMessage('Minimum 2 symbols required')
             ,
@@ -134,6 +125,16 @@ export const validationRules = {
                     require_protocol: true,
                 }).withMessage('Incorrect website URL')
                 .bail()
+            ,
+            body('username').optional().trim()
+                .isLength({ min: 2 }).withMessage('Minimum 2 symbols required')
+                .custom(async (username, { req }) => {
+                    const isExists = await User.exists({ username, _id: { $ne: req.user.id } });
+                    if (isExists) {
+                        req.res.status(400);
+                        throw new Error('This username is already taken');
+                    }
+                })
             ,
         ],
     },
